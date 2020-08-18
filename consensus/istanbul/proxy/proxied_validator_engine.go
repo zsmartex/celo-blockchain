@@ -601,13 +601,14 @@ func (pv *proxiedValidatorEngine) IsStatsProxy(peerID enode.ID) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	logger.Warn("jcortejoso IsStatsProxy func")
 
 	for _, proxy := range proxies {
 		if proxy.peer != nil && proxy.peer.Node().ID() == peerID {
+			logger.Warn("jcortejoso IsStatsProxy func found")
 			return proxy.statsHandler, nil
 		}
 	}
+	logger.Warn("jcortejoso IsStatsProxy func not found")
 
 	return false, nil
 }
