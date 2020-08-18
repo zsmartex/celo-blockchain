@@ -596,7 +596,6 @@ func (pv *proxiedValidatorEngine) getValidatorConnSetDiff(validators []common.Ad
 }
 
 func (pv *proxiedValidatorEngine) IsStatsProxy(peerID enode.ID) (bool, error) {
-	logger := pv.logger.New("func", "IsStatsProxy")
 	proxies, _, err := pv.GetProxiesAndValAssignments()
 	if err != nil {
 		return false, err
@@ -604,11 +603,9 @@ func (pv *proxiedValidatorEngine) IsStatsProxy(peerID enode.ID) (bool, error) {
 
 	for _, proxy := range proxies {
 		if proxy.peer != nil && proxy.peer.Node().ID() == peerID {
-			logger.Warn("jcortejoso IsStatsProxy func found")
 			return proxy.statsHandler, nil
 		}
 	}
-	logger.Warn("jcortejoso IsStatsProxy func not found")
 
 	return false, nil
 }
