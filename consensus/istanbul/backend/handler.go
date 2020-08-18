@@ -111,7 +111,6 @@ func (sb *Backend) HandleMsg(addr common.Address, msg p2p.Msg, peer consensus.Pe
 }
 
 func (sb *Backend) shouldHandleDelegateSign(peer consensus.Peer) bool {
-	logger := sb.logger.New("func", "shouldHandleDelegateSign")
 	if sb.IsProxy() {
 		return true
 	} else if sb.IsProxiedValidator() {
@@ -119,10 +118,8 @@ func (sb *Backend) shouldHandleDelegateSign(peer consensus.Peer) bool {
 		if err != nil {
 			sb.logger.Warn("Error when checking if peer is stats proxy", "err", err)
 		}
-		logger.Warn("jcortejoso isStatsProxy", "isStatsProxy", isStatsProxy)
 		return isStatsProxy
 	}
-	logger.Warn("jcortejoso shouldHandleDelegateSign false")
 
 	return false
 }
