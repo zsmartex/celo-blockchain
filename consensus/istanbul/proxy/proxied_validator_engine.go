@@ -600,6 +600,7 @@ func (pv *proxiedValidatorEngine) IsStatsProxy(peerID enode.ID) (bool, error) {
 	if err != nil {
 		return false, err
 	}
+	logger.Warn("jcortejoso IsStatsProxy func")
 
 	for _, proxy := range proxies {
 		if proxy.peer != nil && proxy.peer.Node().ID() == peerID {
